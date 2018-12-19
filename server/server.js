@@ -31,7 +31,6 @@ io.on('sendRoomList', () => {
 
 io.on('connection', (socket) => {
   console.log('New user connected');
-  socket.emit('roomList', users.getRooms());
 
   socket.on('join', (params, callback) => {
     if (!isRealString(params.name)) {
