@@ -3,7 +3,7 @@ const expect = require('expect');
 var {generateMessage, generateLocationMessage} = require('./message');
 
 describe('generateMessage', () => {
-  if('should generate correct message object', () => {
+  it('should generate correct message object', () => {
     var from = 'othman';
     var text = 'hello othman';
     var res = generateMessage(from, text);
@@ -16,7 +16,7 @@ describe('generateMessage', () => {
 });
 
 describe('generateLocationMessage', () => {
-  if('should generate correct location object', () => {
+  it('should generate correct location object', () => {
     var from = 'othman';
     var latitude = 69;
     var longitude = 96;
