@@ -18,12 +18,15 @@ var socket = io();
 
 socket.on('connect', function() {
   var params = jQuery.deparam(window.location.search);
-  socket.emit('join', params, function(err) {
-    if (err) {
-      alert(err);
+  socket.emit('join', params, function(data) {
+    if (data.hasOwnProperty('error')) {
+      alert(data.error);
       window.location.href = '/';
-    } else {
-      console.log('No error');
+    } else if (data.hasOwnProperty('room')) {
+      //console.log('No error');
+      var h3 = jQuery('<h3></h3>');
+      h3.text(data.room);
+      jQuery('#room-name').html(h3);
     }
   });
 });
@@ -75,6 +78,13 @@ jQuery('#message-form').on('submit', function(e) {
   }, function() {
     messageTextBox.val('');
   });
+});
+
+jQuery('[name=message]').on('keypress', function(e) {
+  if (e.which == 13 && !e.shiftKey) {
+    e.preventDefault();
+    jQuery('#message-form').submit();
+  }
 });
 
 var locationButton = jQuery('#send-location');

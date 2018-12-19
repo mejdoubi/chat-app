@@ -12,6 +12,7 @@
   <div class="chat__sidebar">
     <h3>People</h3>
     <div id="users"></div>
+    <div class="chat__room_name" id="room-name"></div>
   </div>
 
   <div class="chat__main">
@@ -19,7 +20,8 @@
 
     <div class="chat__footer">
       <form id="message-form">
-        <input name="message" type="text" placeholder="Message" autofocus autocomplete="off" />
+        <textarea name="message" type="text" placeholder="Message"
+          autofocus autocomplete="off"></textarea>
         <button>Send</button>
       </form>
       <button id="send-location">Send Location</button>
@@ -45,9 +47,7 @@
         <span>{{createdAt}}</span>
       </div>
       <div class="message__body">
-        <p>
-          <a href="{{url}}" target="_blank">My current location</a>
-        </p>
+        <p><a href="{{url}}" target="_blank">My current location</a></p>
       </div>
     <li>
   </script>

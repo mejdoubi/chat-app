@@ -87,7 +87,7 @@ button:disabled {
   margin-bottom: 7px;
 }
 
-.form-field input, .form-field select {
+.form-field input, .form-field textarea, .form-field select {
   border: 1px solid #e1e1e1;
   padding: 10px;
 }
@@ -139,6 +139,11 @@ button:disabled {
   -webkit-overflow-scrolling: touch;
 }
 
+.chat__room_name {
+  position: absolute;
+  bottom: 0;
+}
+
 .chat__footer {
   background: #e6eaee;
   display: flex;
@@ -156,10 +161,14 @@ button:disabled {
   margin-right: 10px;
 }
 
-.chat__footer input {
+.chat__footer input, .chat__footer textarea{
   border: none;
   padding: 10px;
   flex-grow: 1;
+}
+
+.chat__footer textarea {
+  resize: none;
 }
 
 .chat__messages {
@@ -174,6 +183,10 @@ button:disabled {
 .message__title {
   display: flex;
   margin-bottom: 5px;
+}
+
+.message__body p {
+  white-space: pre-wrap;
 }
 
 .message__title h4 {

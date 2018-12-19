@@ -30,27 +30,28 @@ io.on('sendRoomList', () => {
 });
 
 io.on('connection', (socket) => {
-  console.log('New user connected');
-
+  io.emit('roomList', users.getRooms());
   socket.on('join', (params, callback) => {
     if (!isRealString(params.name)) {
-      return callback('Name is required.');
+      return callback({error: 'Name is required.'});
     }
 
     if (users.getUserByName(params.name)) {
-      return callback('Name is already used. Please use another one.');
+      return callback({error: 'Name is already used. Please use another one.'});
     }
 
     if (!isRealString(params.room) && !isRealString(params.activeRoom)) {
-      return callback('Room name is required.');
+      return callback({error: 'Room name is required.'});
     } else if (isRealString(params.room)) {
-      // i wanna join this room
-      // keep going
+      callback({room: params.room});
     } else if (isRealString(params.activeRoom)) {
       params.room = params.activeRoom;
+      callback({room: params.room});
     }
 
-    params.room = params.room.toLowerCase();
+    params.room = params.room.toLowerCase().trim();
+    params.name = params.name.trim();
+
     socket.join(params.room);
     users.removeUser(socket.id);
     users.addUser(socket.id, params.name, params.room);

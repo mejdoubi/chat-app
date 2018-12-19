@@ -15,7 +15,6 @@ socket.on('roomList', function(rooms) {
 var roomTextBox = jQuery('[name=room]');
 roomTextBox.on('input', function(e) {
   var rooms = jQuery('[name=activeRoom]');
-  console.log('roomTextBox', roomTextBox.val());
   if (roomTextBox.val()) {
     rooms.attr('disabled', 'disabled');
   } else {
