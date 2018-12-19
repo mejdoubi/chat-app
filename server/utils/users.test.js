@@ -44,13 +44,23 @@ describe('Users', () => {
     expect(users.users.length).toBe(3);
   });
 
-  it('should find user', () => {
+  it('should find user by id', () => {
     var resUser = users.getUser('1');
     expect(resUser.id).toBe('1');
   });
 
-  it('should not find user', () => {
+  it('should not find user by id', () => {
     var resUser = users.getUser('7');
+    expect(resUser).toBe(undefined);
+  });
+
+  it('should find user by name', () => {
+    var resUser = users.getUserByName('nawal');
+    expect(resUser.name).toBe('nawal');
+  });
+
+  it('should not find user by name', () => {
+    var resUser = users.getUserByName('jamal');
     expect(resUser).toBe(undefined);
   });
 
@@ -62,5 +72,10 @@ describe('Users', () => {
   it('should return names for family room', () => {
     var userList = users.getUserList('family');
     expect(userList).toEqual(['wafaa']);
+  });
+
+  it('should return all active rooms', () => {
+    var rooms = users.getRooms();
+    expect(rooms).toEqual(['dsvh', 'family']);
   });
 });
